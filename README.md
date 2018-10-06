@@ -12,7 +12,7 @@ The following is still missing:
 
 To use it:
 * Set up a RecyclerView
-* define a model and implement a corresponding Presenter
-* register the model-presenter pair in RendererBindingModule
+* define a model and implement a corresponding Renderer
+* register the model-renderer pair in RendererBindingModule
 * set up a RecyclerViewController with the recyclerView and RendererPool(daggerized)
 * use RecyclerViewController#addModel and see magic happen(example in RendererToyActivity)
