@@ -2,13 +2,19 @@ package com.javapapers.renderertoy.ui;
 
 import android.support.v7.widget.RecyclerView;
 
+import javax.inject.Inject;
+
 public class RecyclerViewController {
 
-    private RendererAdapter rendererAdapter;
+    @Inject
+    RendererAdapter rendererAdapter;
 
-    public RecyclerViewController(RecyclerView recyclerView, RendererPool rendererPool) {
-        rendererAdapter = new RendererAdapter(rendererPool);
-        recyclerView.setAdapter(rendererAdapter);
+    @Inject
+    public RecyclerViewController() {
+    }
+
+    public void setRecyclerView(RecyclerView view) {
+        view.setAdapter(rendererAdapter);
     }
 
     public void addItems(Object... models) {

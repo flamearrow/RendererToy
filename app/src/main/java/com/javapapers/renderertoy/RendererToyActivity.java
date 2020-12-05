@@ -12,17 +12,13 @@ import android.view.View;
 import com.javapapers.renderertoy.model.ButtonModel;
 import com.javapapers.renderertoy.model.TextModel;
 import com.javapapers.renderertoy.ui.RecyclerViewController;
-import com.javapapers.renderertoy.ui.RendererPool;
 
 import javax.inject.Inject;
 
 public class RendererToyActivity extends BaseActivity {
 
     @Inject
-    RendererPool rendererPool;
-
-    private RecyclerView root;
-    private RecyclerViewController recyclerViewController;
+    RecyclerViewController recyclerViewController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +36,8 @@ public class RendererToyActivity extends BaseActivity {
                 fillContent();
             }
         });
-        root = findViewById(R.id.root_container);
+        recyclerViewController.setRecyclerView((RecyclerView) findViewById(R.id.root_container));
 
-        recyclerViewController = new RecyclerViewController(root, rendererPool);
     }
 
     @Override

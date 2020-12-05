@@ -5,29 +5,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * A {@link RecyclerView.Adapter} implementation to decouple Modal and {@link Renderer}.
- *
+ * <p>
  * A {@link Renderer#getView()} is called whenever the RecyclerView (re)used the ViewHolder to
  * create display an item on screen.
  */
 public class RendererAdapter extends RecyclerView.Adapter<RendererViewHolder<?>> {
 
+    @Inject
     RendererPool pool;
-    private List<Object> models;
+    
+    private final List<Object> models;
 
-    public RendererAdapter(RendererPool pool) {
-        this.pool = pool;
+    @Inject
+    public RendererAdapter() {
         models = new ArrayList<>();
     }
 
 
     public void addModel(Object... newModesl) {
-        for(Object model : newModesl) {
-            models.add(model);
-        }
+        models.addAll(Arrays.asList(newModesl));
         notifyDataSetChanged();
     }
 
@@ -41,7 +44,7 @@ public class RendererAdapter extends RecyclerView.Adapter<RendererViewHolder<?>>
      */
     @NonNull
     @Override
-    public RendererViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RendererViewHolder<?> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new RendererViewHolder(createRenderer(parent, viewType));
     }
 
